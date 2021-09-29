@@ -34,7 +34,7 @@
                     "variables": {},
                     "resources": [
                         {
-                            "name": "${acre_name_1}/default",
+                            "name": "${acre_name_2}/default",
                             "type": "Microsoft.Cache/redisEnterprise/databases",
                             "apiVersion": "2021-02-01-preview",
                             "properties": {
@@ -69,14 +69,17 @@
                             "tags": {}
                         },
                         {
-                          "name": "privatelink2",
+                          "name": "${acre_name_2}/default/privatelinktwo",
                           "type": "Microsoft.Cache/redisEnterprise/privateEndpointConnections",
                           "apiVersion": "2021-03-01",
                           "properties": {
                             "privateEndpoint": {},
                             "privateLinkServiceConnectionState": {
                             }
-                          }
+                          },
+                          "dependsOn": [
+                            "Microsoft.Cache/redisEnterprise/${acre_name_2}"
+                          ]
                         }
                     ],
                     "outputs": {}

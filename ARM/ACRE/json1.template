@@ -56,14 +56,17 @@
                     "tags": {}
                 },
                 {
-                  "name": "privatelink1",
+                  "name": "${acre_name}/default/privatelinkone",
                   "type": "Microsoft.Cache/redisEnterprise/privateEndpointConnections",
                   "apiVersion": "2021-03-01",
                   "properties": {
                     "privateEndpoint": {},
                     "privateLinkServiceConnectionState": {
                     }
-                  }
+                  },
+                  "dependsOn": [
+                      "Microsoft.Cache/redisEnterprise/${acre_name}"
+                  ]
                 }
             ]
         }
