@@ -80,9 +80,8 @@ terraform destroy
 
 ## See Also
 
-[acre-terraform-cron-replication](https://github.com/redisgeek/acre-terraform-cron-replication)
-[acre-terraform-geo-replication](https://github.com/redisgeek/acre-terraform-geo-replication)
-
+- [acre-terraform-cron-replication](https://github.com/redisgeek/acre-terraform-cron-replication)
+- [acre-terraform-geo-replication](https://github.com/redisgeek/acre-terraform-geo-replication)
 
 ## Roadmap
 
