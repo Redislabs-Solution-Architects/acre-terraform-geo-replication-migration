@@ -62,7 +62,8 @@ vi terraform.tfvars
 terraform plan
 terraform apply
 ```
-
+>As configured this can take ~20 minutes to deploy
+ 
 Have fun!
 
 ### Regions
