@@ -25,22 +25,22 @@ variable "acre_eviction_policy" {
 
 variable "acre_template_path_1" {
   description = "Path to ARM template being sourced"
-  default     = "./ARM/ACRE/json1.template"
+  default     = "./ARM/ACRE/primary.json"
 }
 
 variable "acre_template_path_2" {
   description = "Path to ARM template being sourced"
-  default     = "./ARM/ACRE/json2.template"
+  default     = "./ARM/ACRE/secondary.json"
 }
 
 variable "acre_template_path_3" {
   description = "Path to ARM template being sourced"
-  default     = "./ARM/ACRE/json3.template"
+  default     = "./ARM/ACRE/temporary.json"
 }
 
 variable "acre_sku" {
   type    = string
-  default = "Enterprise_E100"
+  default = "Enterprise_E10"
 }
 
 variable "client_id" {

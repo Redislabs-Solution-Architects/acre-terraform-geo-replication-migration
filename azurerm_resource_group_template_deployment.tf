@@ -55,7 +55,7 @@ resource "azurerm_resource_group_template_deployment" "acre_temp" {
       acre_name_1            = format("redisgeek%s", random_string.acre_name_1.result),
       acre_name_2            = format("redisgeek%s", random_string.acre_name_2.result),
       acre_name_3            = format("redisgeek%s", random_string.acre_name_3.result),
-      acre_1_deployment_name = azurerm_resource_group_template_deployment.acre_1.name,
+      acre_2_deployment_name = azurerm_resource_group_template_deployment.acre_2.name,
       location               = var.primary-region,
       acre_sku               = var.acre_sku,
       acre_capacity          = var.acre_capacity,

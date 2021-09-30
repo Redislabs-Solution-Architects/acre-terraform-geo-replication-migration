@@ -1,5 +1,5 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "0.0.0.1",
     "parameters": {},
     "resources": [
@@ -14,11 +14,6 @@
                 "name": "${acre_sku}",
                 "capacity": "${acre_capacity}"
             },
-            "zones": [
-                "1",
-                "2",
-                "3"
-            ],
             "tags": {}
         },
         {
@@ -26,9 +21,7 @@
             "type": "Microsoft.Resources/deployments",
             "name": "${acre_1_deployment_name}",
             "resources": [],
-            "dependsOn": [
-                "${acre_name_2}"
-            ],
+            "dependsOn": [],
             "properties": {
                 "mode": "Incremental",
                 "parameters": {},
@@ -54,9 +47,6 @@
                                         },
                                         {
                                             "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group_name}/providers/Microsoft.Cache/redisEnterprise/${acre_name_2}/databases/default"
-                                        },
-                                        {
-                                            "id": "/subscriptions/${subscription_id}/resourceGroups/${resource_group_name}/providers/Microsoft.Cache/redisEnterprise/${acre_name_3}/databases/default"
                                         }
                                     ]
                                 },
@@ -65,16 +55,33 @@
                                   "rdbEnabled": "false",
                                   "aofFrequency": "1s",
                                   "rdbFrequency": "1h"
-                                },
-                                "modules": [
-                                  {
-                                    "name": "RediSearch",
-                                    "args": ""
-                                  }
-                                ]
+                                }
                             },
                             "dependsOn": [],
                             "tags": {}
+                        },
+                        {
+                            "type": "Microsoft.Network/privateEndpoints",
+                            "apiVersion": "2019-04-01",
+                            "name": "secondaryprivateendpoint",
+                            "location": "${location}",
+                            "dependsOn": [],
+                            "properties": {
+                                "subnet": {
+                                    "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', '${vnet}', '${subnet}')]"
+                                },
+                                "privateLinkServiceConnections": [
+                                    {
+                                        "name": "privatelinktwo",
+                                        "properties": {
+                                            "privateLinkServiceId": "[resourceId('Microsoft.Cache/redisEnterprise', '${acre_name_2}')]",
+                                            "groupIds": [
+                                                "redisEnterprise"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
                         }
                     ],
                     "outputs": {}

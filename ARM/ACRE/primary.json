@@ -1,5 +1,5 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "0.0.0.1",
     "parameters": {},
     "resources": [
@@ -42,13 +42,7 @@
                           "rdbEnabled": "false",
                           "aofFrequency": "1s",
                           "rdbFrequency": "1h"
-                        },
-                        "modules": [
-                          {
-                            "name": "RediSearch",
-                            "args": ""
-                          }
-                        ]
+                        }
                     },
                     "dependsOn": [
                         "Microsoft.Cache/redisEnterprise/${acre_name}"
@@ -56,17 +50,29 @@
                     "tags": {}
                 },
                 {
-                  "name": "${acre_name}/default/privatelinkone",
-                  "type": "Microsoft.Cache/redisEnterprise/privateEndpointConnections",
-                  "apiVersion": "2021-03-01",
-                  "properties": {
-                    "privateEndpoint": {},
-                    "privateLinkServiceConnectionState": {
+                    "type": "Microsoft.Network/privateEndpoints",
+                    "apiVersion": "2019-04-01",
+                    "name": "primaryprivateendpoint",
+                    "location": "${location}",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Cache/redisEnterprise', '${acre_name}')]"
+                    ],
+                    "properties": {
+                        "subnet": {
+                            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', '${vnet}', '${subnet}')]"
+                        },
+                        "privateLinkServiceConnections": [
+                            {
+                                "name": "privatelinkone",
+                                "properties": {
+                                    "privateLinkServiceId": "[resourceId('Microsoft.Cache/redisEnterprise', '${acre_name}')]",
+                                    "groupIds": [
+                                        "redisEnterprise"
+                                    ]
+                                }
+                            }
+                        ]
                     }
-                  },
-                  "dependsOn": [
-                      "Microsoft.Cache/redisEnterprise/${acre_name}"
-                  ]
                 }
             ]
         }
