@@ -1,13 +1,13 @@
 terraform {
   required_providers {
     random = {
-      source  = "hashicorp/random"
+      source = "hashicorp/random"
     }
     azuread = {
-      source  = "hashicorp/azuread"
+      source = "hashicorp/azuread"
     }
     azurerm = {
-      source  = "hashicorp/azurerm"
+      source = "hashicorp/azurerm"
     }
   }
   backend "remote" {}
