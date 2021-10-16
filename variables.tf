@@ -33,22 +33,6 @@ variable "acre_sku" {
   default = "Enterprise_E100"
 }
 
-variable "client_id" {
-  description = "Service Principal to use (az ad sp create-for-rbac ...)"
-}
-
-variable "client_secret" {
-  description = "Client Secret for Service Principal"
-}
-
-variable "subscription_id" {
-  type = string
-}
-
-variable "tenant_id" {
-  type = string
-}
-
 variable "cloud_name" {
   description = "The Azure cloud environment to use. Available values at https://www.terraform.io/docs/providers/azurerm/#environment"
   default     = "public"
