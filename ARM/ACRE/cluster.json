@@ -74,13 +74,7 @@
                         ]
                     }
                 }
-            ],
-            "outputs": {
-                "primaryId": {
-                    "type": "string",
-                    "value": "[resourceId(']"
-                }
-            }
+            ]
         },
         {
             "name": "${acre_name_2}",
