@@ -56,3 +56,7 @@ variable "secondary-region" {
   default     = "westcentralus"
   type        = string
 }
+
+variable "subscription_id" {
+  type = string
+}
